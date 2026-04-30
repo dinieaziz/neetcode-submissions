@@ -1,0 +1,30 @@
+class MinStack:
+    """
+    Use another stack to track the minimum value at each element pushed/popped
+
+    Time:   O(1)
+    Space:  O(m)
+    """
+
+    def __init__(self):
+        self.stack = []
+        self.minStack = []
+
+    def push(self, val: int) -> None:
+        self.stack.append(val)
+        
+        if self.minStack:
+            val = min(self.minStack[-1], val)
+
+        self.minStack.append(val)
+        
+    def pop(self) -> None:
+        self.stack.pop()
+        self.minStack.pop()
+
+    def top(self) -> int:
+        return self.stack[-1]
+
+    def getMin(self) -> int:
+        return self.minStack[-1]
+        
